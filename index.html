@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Informasi Menu Hari Ini</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f5f7f4;color:#263326}
+.wrap{max-width:600px;margin:auto;padding:28px 18px}
+.card{background:white;border-radius:22px;padding:28px;box-shadow:0 8px 28px #00000012}
+h1{text-align:center;margin:0 0 8px;font-size:28px}
+.date{text-align:center;color:#6d776d;margin-bottom:24px}
+.item{padding:15px 16px;margin:10px 0;background:#f0f5ee;border-radius:14px;font-size:18px;font-weight:600}
+.notice{margin-top:20px;padding:15px;border-radius:14px;background:#fff8df}
+footer{text-align:center;color:#7b837b;font-size:13px;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="card">
+<h1 id="title">Informasi Menu Hari Ini</h1>
+<div class="date" id="date"></div>
+<div id="menu"></div>
+<div class="notice" id="notice" style="display:none"></div>
+</div><footer>Informasi Menu SPPG</footer></div>
+<script>
+const fallback={title:"Informasi Menu Hari Ini",date:"",menu:["Nasi","Ayam Crispy","Tahu Goreng","Cream Soup","Anggur"],notice:""};
+fetch("menu.json?"+Date.now()).then(r=>r.json()).catch(()=>fallback).then(d=>{
+ document.getElementById("title").textContent=d.title||fallback.title;
+ document.getElementById("date").textContent=d.date||"";
+ document.getElementById("menu").innerHTML=(d.menu||[]).map(x=>`<div class="item">${escapeHtml(x)}</div>`).join("");
+ if(d.notice){let n=document.getElementById("notice");n.style.display="block";n.textContent=d.notice;}
+});
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+</script>
+</body>
+</html>

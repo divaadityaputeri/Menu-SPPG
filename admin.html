@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin Menu</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f5f7f4;margin:0}.wrap{max-width:650px;margin:auto;padding:24px 18px}
+.card{background:#fff;padding:24px;border-radius:20px;box-shadow:0 8px 28px #0001}
+label{display:block;font-weight:bold;margin:14px 0 6px}input,textarea{width:100%;box-sizing:border-box;padding:12px;border:1px solid #ccd4ca;border-radius:10px;font-size:16px}
+textarea{min-height:180px}.btn{margin-top:16px;padding:13px 18px;border:0;border-radius:10px;background:#365f38;color:white;font-weight:bold;cursor:pointer}
+.small{font-size:13px;color:#687168;line-height:1.5}.result{margin-top:16px;padding:12px;background:#eef5eb;border-radius:10px}
+</style></head>
+<body><div class="wrap"><div class="card">
+<h1>Edit Menu</h1>
+<p class="small">Edit data di bawah, lalu simpan. File <b>menu.json</b> perlu diperbarui di hosting agar perubahan terlihat oleh pengunjung.</p>
+<label>Judul</label><input id="title">
+<label>Tanggal</label><input id="date" placeholder="Contoh: Sabtu, 15 Agustus 2026">
+<label>Menu (satu menu per baris)</label><textarea id="menu"></textarea>
+<label>Pengumuman (opsional)</label><input id="notice">
+<button class="btn" onclick="download()">Simpan / Download menu.json</button>
+<div id="result" class="result" style="display:none">menu.json berhasil dibuat. Upload file ini menggantikan menu.json lama.</div>
+</div></div>
+<script>
+fetch("menu.json?"+Date.now()).then(r=>r.json()).then(d=>{
+ title.value=d.title||"";date.value=d.date||"";menu.value=(d.menu||[]).join("\n");notice.value=d.notice||"";
+});
+function download(){
+ const d={title:title.value,date:date.value,menu:menu.value.split(/\n+/).map(x=>x.trim()).filter(Boolean),notice:notice.value};
+ const blob=new Blob([JSON.stringify(d,null,2)],{type:"application/json"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="menu.json";a.click();
+ result.style.display="block";
+}
+</script></body></html>
