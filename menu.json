@@ -1,13 +1,17 @@
 {
-  "title": "Informasi Menu Hari Ini",
-  "date": "Kamis, 20 Agustus 2026",
-  "menu PB PK Bumil Busui dan Balita": [
-    "Nasi",
-    "Ikan Nila Goreng Bumbu Bakar dan Ikan Nila Fillet Goreng",
-    "Nugget Tempe",
-    "Rebusan Labu Siam",
-    "Jeruk",
-    "Sambal Kecap"
-  ],
-  "notice": ""
+  "judul": "Informasi Menu Hari Ini",
+  "tanggal": "Kamis, 20 Agustus 2026",
+  "menu": {
+    "kategori_penerima": "PB, PK, Bumil, Busui, dan Balita",
+    "item_makanan": [
+      "Nasi",
+      "Ikan Nila Goreng Bumbu Bakar",
+      "Ikan Nila Fillet Goreng",
+      "Nugget Tempe",
+      "Rebusan Labu Siam",
+      "Jeruk",
+      "Sambal Kecap"
+    ]
+  },
+  "catatan": null
 }
