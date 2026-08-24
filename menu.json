@@ -1,7 +1,12 @@
+{
+  "title": "Informasi Menu Hari Ini",
   "date": "Jumat, 21 Agustus 2026",
   "menu": [
     "Nasi",
     "Ikan Nila Kuah Asam Padeh",
     "Kacang Kribo_Porsi Besar Tempe Goreng_Porsi Kecil",
     "Tumis Labu Siam",
-    "Jeruk",
+    "Jeruk"
+  ],
+  "notice": ""
+}
