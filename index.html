@@ -23,7 +23,7 @@ footer{text-align:center;color:#7b837b;font-size:13px;margin-top:20px}
 <div class="notice" id="notice" style="display:none"></div>
 </div><footer>Informasi Menu SPPG</footer></div>
 <script>
-const fallback={title:"Informasi Menu Hari Ini",date:"Selasa, 1 September 2026",menu:["Nasi","Ikan Nila Goreng Kuah Tauco_Pb, Pk, Bumil dan Busui, Ikan Nila Fillet Kuah Kuning_Balita","Tahu Goreng","Tumis Tauge dan Jagung","Semangka"],notice:""};
+const fallback={title:"Informasi Menu Hari Ini",date:"Rabu, 2 September 2026",menu:["Nasi","Daging Sapi Gulai_PB, Pk, Bumil dan Busui, Sop Daging Sapi_Balita","Kacang Tojin Goreng_PB, PK, Bumil dan Busui, Kacang Merah Rebus_Balita","Tumis Labu Siam_PB, PK, Bumil dan Busui, Kentang dan Wortel Rebus_Balita","Jeruk"],notice:""};
 fetch("menu.json?"+Date.now()).then(r=>r.json()).catch(()=>fallback).then(d=>{
  document.getElementById("title").textContent=d.title||fallback.title;
  document.getElementById("date").textContent=d.date||"";
