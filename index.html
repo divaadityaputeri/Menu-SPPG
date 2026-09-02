@@ -1,36 +1,328 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Informasi Menu Hari Ini</title>
-<style>
-body{font-family:Arial,sans-serif;margin:0;background:#f5f7f4;color:#263326}
-.wrap{max-width:600px;margin:auto;padding:28px 18px}
-.card{background:white;border-radius:22px;padding:28px;box-shadow:0 8px 28px #00000012}
-h1{text-align:center;margin:0 0 8px;font-size:28px}
-.date{text-align:center;color:#6d776d;margin-bottom:24px}
-.item{padding:15px 16px;margin:10px 0;background:#f0f5ee;border-radius:14px;font-size:18px;font-weight:600}
-.notice{margin-top:20px;padding:15px;border-radius:14px;background:#fff8df}
-footer{text-align:center;color:#7b837b;font-size:13px;margin-top:20px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Informasi Menu Hari Ini</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7f4;
+            color: #263326;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 24px 18px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 28px 22px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
+        }
+
+        h1 {
+            text-align: center;
+            margin: 0 0 10px;
+            font-size: 28px;
+            line-height: 1.3;
+            color: #182618;
+        }
+
+        .date {
+            text-align: center;
+            color: #6d776d;
+            margin-bottom: 24px;
+            font-size: 15px;
+        }
+
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .item {
+            padding: 16px;
+            background: #f0f5ee;
+            border-radius: 14px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #263326;
+        }
+
+        .notice {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 14px;
+            background: #fff8df;
+            color: #665a24;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        footer {
+            text-align: center;
+            color: #7b837b;
+            font-size: 13px;
+            margin-top: 20px;
+            padding-bottom: 10px;
+        }
+
+        .loading {
+            text-align: center;
+            color: #7b837b;
+            padding: 20px;
+        }
+
+        @media (max-width: 480px) {
+            .wrap {
+                padding: 18px 12px;
+            }
+
+            .card {
+                padding: 24px 16px;
+                border-radius: 18px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .item {
+                font-size: 16px;
+                padding: 14px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<div class="wrap"><div class="card">
-<h1 id="title">Informasi Menu Hari Ini</h1>
-<div class="date" id="date"></div>
-<div id="menu"></div>
-<div class="notice" id="notice" style="display:none"></div>
-</div><footer>Informasi Menu SPPG</footer></div>
-<script>
-const fallback={title:"Informasi Menu Hari Ini",date:"Kamis, 3 September 2026",menu:["Nasi","Telur Saus Mentega","Bola Bola Tahu","Tumis Sawi Putih",Kelengkeng"],notice:""};
-fetch("menu.json?"+Date.now()).then(r=>r.json()).catch(()=>fallback).then(d=>{
- document.getElementById("title").textContent=d.title||fallback.title;
- document.getElementById("date").textContent=d.date||"";
- document.getElementById("menu").innerHTML=(d.menu||[]).map(x=>`<div class="item">${escapeHtml(x)}</div>`).join("");
- if(d.notice){let n=document.getElementById("notice");n.style.display="block";n.textContent=d.notice;}
-});
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-</script>
+
+    <div class="wrap">
+
+        <div class="card">
+
+            <h1 id="title">
+                Informasi Menu Hari Ini
+            </h1>
+
+            <div class="date" id="date">
+                Memuat tanggal...
+            </div>
+
+            <div id="menu" class="menu-list">
+                <div class="loading">
+                    Memuat menu...
+                </div>
+            </div>
+
+            <div
+                class="notice"
+                id="notice"
+                style="display: none;">
+            </div>
+
+        </div>
+
+        <footer>
+            Informasi Menu SPPG
+        </footer>
+
+    </div>
+
+
+    <script>
+
+        /*
+         * DATA CADANGAN
+         * Akan digunakan apabila menu.json
+         * tidak bisa dibaca.
+         */
+
+        const fallback = {
+            title: "Informasi Menu Hari Ini",
+
+            date: "Kamis, 3 September 2026",
+
+            menu: [
+                "Nasi",
+                "Telur Saus Mentega",
+                "Bola Bola Tahu",
+                "Tumis Sawi Putih",
+                "Kelengkeng"
+            ],
+
+            notice: ""
+        };
+
+
+        /*
+         * Fungsi untuk mencegah
+         * karakter HTML masuk ke halaman.
+         */
+
+        function escapeHtml(value) {
+
+            return String(value).replace(
+                /[&<>"']/g,
+                function (character) {
+
+                    return {
+                        "&": "&amp;",
+                        "<": "&lt;",
+                        ">": "&gt;",
+                        '"': "&quot;",
+                        "'": "&#039;"
+                    }[character];
+
+                }
+            );
+
+        }
+
+
+        /*
+         * Menampilkan data menu
+         */
+
+        function tampilkanMenu(data) {
+
+            const titleElement =
+                document.getElementById("title");
+
+            const dateElement =
+                document.getElementById("date");
+
+            const menuElement =
+                document.getElementById("menu");
+
+            const noticeElement =
+                document.getElementById("notice");
+
+
+            /*
+             * Judul
+             */
+
+            titleElement.textContent =
+                data.title || fallback.title;
+
+
+            /*
+             * Tanggal
+             */
+
+            dateElement.textContent =
+                data.date || fallback.date;
+
+
+            /*
+             * Menu
+             */
+
+            const daftarMenu =
+                Array.isArray(data.menu)
+                    ? data.menu
+                    : fallback.menu;
+
+
+            if (daftarMenu.length === 0) {
+
+                menuElement.innerHTML = `
+                    <div class="loading">
+                        Menu belum tersedia.
+                    </div>
+                `;
+
+            } else {
+
+                menuElement.innerHTML =
+                    daftarMenu.map(function (menu) {
+
+                        return `
+                            <div class="item">
+                                ${escapeHtml(menu)}
+                            </div>
+                        `;
+
+                    }).join("");
+
+            }
+
+
+            /*
+             * Catatan / pemberitahuan
+             */
+
+            if (data.notice && data.notice.trim() !== "") {
+
+                noticeElement.style.display = "block";
+
+                noticeElement.textContent =
+                    data.notice;
+
+            } else {
+
+                noticeElement.style.display = "none";
+
+                noticeElement.textContent = "";
+
+            }
+
+        }
+
+
+        /*
+         * Coba mengambil data dari menu.json
+         */
+
+        fetch("menu.json?" + Date.now())
+
+            .then(function (response) {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "menu.json tidak ditemukan"
+                    );
+
+                }
+
+                return response.json();
+
+            })
+
+            .then(function (data) {
+
+                tampilkanMenu(data);
+
+            })
+
+            .catch(function (error) {
+
+                console.log(
+                    "Menggunakan data cadangan:",
+                    error
+                );
+
+                tampilkanMenu(fallback);
+
+            });
+
+    </script>
+
 </body>
 </html>
