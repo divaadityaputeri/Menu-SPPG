@@ -1,13 +1,14 @@
 {
   "title": "Informasi Menu Hari Ini",
-  "date": "Kamis, 08 Oktober 2026",
+  "date": "Senin, 12 Oktober 2026",
   "menu": [
     "Nasi",
-    "Telur Goreng dan Kuah Gulai",
-    "Kacang Tanah Goreng_PB, PK, Bumil dan Busui",
-    "Tempe Goreng_Balita",
-    "Tumis Kacang Panjang dan Tauge",
-    "Salak"
+    "Telur Goreng dan Bumbu Rendang_PB, PK. Bumil dan Busui",
+    "Telur Goreng dan Bumbu Kalio",
+    "Kacang Tojin Goreng_PB, PK, Bumil dan Busui",
+    "Kacang Merah Rebus_Balita",
+    "Lodeh Kacang Panjang, Labu Siam dan Jagung",
+    "Melon Kuning"
   ],
   "notice": ""
 }
