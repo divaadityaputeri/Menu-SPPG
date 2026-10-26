@@ -1,13 +1,14 @@
 {
   "title": "Informasi Menu Hari Ini",
-  "date": "Senin, 26 Oktober 2026",
+  "date": "Selasa, 27 Oktober 2026",
   "menu": [
     "Nasi",
-    "Telur Goreng dan Saus Mentega",
-    "Tempe Sambal Daun Jeruk_PB, PK, Bumil dan Busui",
-    "Tempe Sambal Tomat_Balita",
-    "Bakwan Sayur",
-    "Jeruk"
+    "Daging Sapi dan Kentang Kari_PB, PK, Bumil dan Busui",
+    "Sop Daging dan Kentang_Balita",
+    "Kacang Tojin Goreng_PB, PK, Bumil dan Busui",
+    "Kacang Merah_Balita",
+    "Tumis Labu Siam",
+    "Pepaya"
   ],
   "notice": ""
 }
