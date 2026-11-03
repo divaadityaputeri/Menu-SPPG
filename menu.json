@@ -1,14 +1,13 @@
 {
   "title": "Informasi Menu Hari Ini",
-  "date": "Senin, 2 November 2026",
+  "date": "Selasa, 4 November 2026",
   "menu": [
     "Nasi",
-    "Ikan Nila Goreng dan Kuah Asam Padeh_PB, PK, Bumil dan Busui",
-    "Ikan Nila Fillet Goreng dan Kuah Asam Padeh_Balita",
-    "Kacang Tanah Goreng_PB, PK, Bumil dan Busui",
-    "Kacang Merah Rebus_Balita",
-    "Tumis Sawi Manis dan Wortel",
-    "Semangka Merah"
+    "Telur Goreng dan Bumbu Bali_PB, PK, Bumil dan Busui",
+    "Telur Goreng dan Sambal Tomat_Balita",
+    "Tahu Goreng",
+    "Tumis Labu Siam dan Wortel",
+    "Shine Muscat"
     
   ],
   "notice": ""
