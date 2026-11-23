@@ -1,16 +1,13 @@
 {
   "title": "Informasi Menu Hari Ini",
-  "date": "Kamis, 19 November 2026",
+  "date": "Senin, 23 November 2026",
   "menu": [
     "Nasi",
-    "Ikan Nila Crispy_PB, PK, Bumil dan Busui",
-    "Ikan Nila Fillet Crispy_Balita",
-    "Tempe Crispy",
-    "Sayur Asem_PB, PK, Bumil dan Busui",
-    "Sayur Bening_Balita",
-    "Anggur",
-    "Sambal Hijau_PB, PK, Bumil dan Busu",
-    "Sambal Tomat_Balita"
+    "Telur Goreng dan Kuah Gulai",
+    "Kacang Tanah Goreng_PB, PK, Bumil dan Busui",
+    "Tempe Goreng_Balita",
+    "Tumis Tauge dan Kacang Tanah ",
+    "Anggur"
    
   ],
   "notice": ""
